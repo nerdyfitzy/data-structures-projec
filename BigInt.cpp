@@ -10,8 +10,7 @@ namespace ds {
         int carry = sum >= 10 ? sum / 10 : 0;
 
         int * r = new int[2];
-        // std::cout << "from " << a << b << c << "ones " << ones << std::endl;
-        // std::cout << "carry " << carry << std::endl;
+
         r[0] = ones;
         r[1] = carry;
         return r;
@@ -50,10 +49,11 @@ namespace ds {
         int * r = new int[2];
         r[1] = 0;
         while(longest >= 0) {
-            // std::cout << "longest " << a.getDigit(longest) << " shortest " << b.getDigit(shortest) << std::endl;
+            //a is meant to be the longer num, conditionals to make sure
             int aDigit = a > b ? a.getDigit(longest) : b.getDigit(longest),
                 bDigit = shortest >= 0 ? a > b ? b.getDigit(shortest) : a.getDigit(shortest) : 0;
             
+            //add them and do not use a carry if its the last loop
             r = fullAdd(aDigit, bDigit, r[1], longest == 0 ? true : false);
             // std::cout << i << " is " << r[0] << std::endl;
             fullSum.insert(0, std::to_string(r[0]));
@@ -88,9 +88,11 @@ namespace ds {
         shortest--;
         int diff = longest - shortest;
         while(longest >= 0) {
+            //a is the longer, b is shorter
             int aDigit = a > b ? a.getDigit(longest) : b.getDigit(longest),
                 bDigit = shortest >= 0 ? a > b ? b.getDigit(shortest) : a.getDigit(shortest) : 0;
 
+            //checks if we should use leading zeroes for the shorter number
             if(longest == diff) {
                 int n = aDigit - bDigit;
                 if(n < 0) {
