@@ -2,32 +2,35 @@
 #define __BIGINT_H__
 
 #include <string>
-#include "AList.h"
+#include "SLList.h"
 #include <iostream>
 
 
 namespace ds {
     class BigInt {
         private:
-            AList<int> digits; // stores the digits of the BigInt
+            SLList<int> digits; // stores the digits of the BigInt
             int length;
         public:
             BigInt(const std::string &val = "") {
                 for (int j = 0; j < val.length(); j++) {
-                digits.addLast(val[j] - '0');
+                    digits.addLast(val[j] - '0');
                 }
 
                 length = digits.size();
             };
             int size() {
-                return digits.size();
+                return length;
             }
             int getDigit(int i) {
-                return i < digits.size() ? digits.get(i) : 0;
+                return i < length ? digits.get(i) : 0;
             }
 
             void addFirst(int i) {
                 digits.addFirst(i);
+            }
+            void addLast(int i) {
+                digits.addLast(i);
             }
 
             void output();

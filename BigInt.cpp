@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "AList.h"
+#include "SLList.h"
 #include "BigInt.h"
 
 namespace ds {
@@ -32,7 +32,7 @@ namespace ds {
         return r;
     }
     void BigInt::output() {
-        for(int i = 0; i < length; i++) {
+        for(int i = 0; i < this->length; i++) {
             std::cout << getDigit(i);
         }
         std::cout << std::endl;
@@ -65,7 +65,10 @@ namespace ds {
         }
 
         delete [] r;
-        return BigInt(fullSum);
+        std::cout << "fsum: ";
+        BigInt fsum(fullSum);
+        fsum.output();
+        return fsum;
     }
 
     //3249870980356
@@ -143,10 +146,19 @@ namespace ds {
         return false;
     }
 
-    static void add(BigInt &a, BigInt &b, BigInt &c) {
-        c = a + b;
+    void BigInt::add(BigInt &a, BigInt &b, BigInt &c) {
+        BigInt t;
+        t = a + b;
+        std::cout << "outputting" << std::endl;
+        t.output();
     }
-    static void subtract(BigInt &a, BigInt &b, BigInt &c) {
-        c = a + b;
+    void BigInt::subtract(BigInt &a, BigInt &b, BigInt &c) {
+        BigInt* temp;
+        *temp = a + b;
+        
+        for(int i = 0; i < temp->size(); i++) {
+            c.addLast(temp->getDigit(i));
+        }
+        delete temp;
     }
 }
