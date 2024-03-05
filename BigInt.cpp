@@ -42,20 +42,25 @@ namespace ds {
         if(a.size() == 1 && a.getDigit(0) == 0) return b;
         if(b.size() == 1 && b.getDigit(0) == 0) return a;
         
+        //find sizes to loop through for each number
         int longest = a.size() > b.size() ? a.size() : b.size();
         int shortest =  a.size() < b.size() ? a.size() : b.size();
         std::string fullSum;
+        //adjust to be indices not sizes
         longest--;
         shortest--;
+        //making an array for sum and carry
         int * r = new int[2];
         r[1] = 0;
         while(longest >= 0) {
-            // std::cout << "longest " << a.getDigit(longest) << " shortest " << b.getDigit(shortest) << std::endl;
+            //get each digit, a should be the longer num and b the shorter
             int aDigit = a > b ? a.getDigit(longest) : b.getDigit(longest),
                 bDigit = shortest >= 0 ? a > b ? b.getDigit(shortest) : a.getDigit(shortest) : 0;
             
+            //add them, if its the last loop then do not use a carry
             r = fullAdd(aDigit, bDigit, r[1], longest == 0 ? true : false);
-            // std::cout << i << " is " << r[0] << std::endl;
+
+            //put the sum in the sum string
             fullSum.insert(0, std::to_string(r[0]));
 
             longest--;
@@ -64,6 +69,7 @@ namespace ds {
             // std::cout << "----------" << std::endl;
         }
 
+        //finalization
         delete [] r;
         std::cout << "fsum: ";
         BigInt fsum(fullSum);
@@ -71,15 +77,12 @@ namespace ds {
         return fsum;
     }
 
-    //3249870980356
-    //   3294057890
-    //           46
 
     BigInt operator-(BigInt &a, BigInt &b) {
         if(a.size() == 1 && a.getDigit(0) == 0) return b;
         if(b.size() == 1 && b.getDigit(0) == 0) return a;
 
-
+        //find shorter/longer sizes
         int longest = a.size() > b.size() ? a.size() : b.size(),
             shortest = a.size() < b.size() ? a.size() : b.size();
 
@@ -87,13 +90,17 @@ namespace ds {
         std::string fullDiff;
         int * r = new int[2];
         r[1] = 0;
+        //adjust for indices
         longest--;
         shortest--;
+        //for leading zeroes
         int diff = longest - shortest;
         while(longest >= 0) {
+            //a should be the longer number and b the shorter
             int aDigit = a > b ? a.getDigit(longest) : b.getDigit(longest),
                 bDigit = shortest >= 0 ? a > b ? b.getDigit(shortest) : a.getDigit(shortest) : 0;
 
+            //recognizes where there should be leading zeroes
             if(longest == diff) {
                 int n = aDigit - bDigit;
                 if(n < 0) {
@@ -105,7 +112,7 @@ namespace ds {
                 r = fullSub(aDigit, bDigit, r[1]);
             }
             
-            // std::cout << "longest" << longest << " shortest " << shortest << std::endl;
+            //insert into the diff string
             fullDiff.insert(0, std::to_string(r[0]));
 
             shortest--;
@@ -149,16 +156,17 @@ namespace ds {
     void BigInt::add(BigInt &a, BigInt &b, BigInt &c) {
         BigInt t;
         t = a + b;
-        std::cout << "outputting" << std::endl;
-        t.output();
+        
+        for(int i = 0; i < t.size(); i++) {
+            c.addLast(t.getDigit(i));
+        }
     }
     void BigInt::subtract(BigInt &a, BigInt &b, BigInt &c) {
-        BigInt* temp;
-        *temp = a + b;
+        BigInt t;
+        t = a + b;
         
-        for(int i = 0; i < temp->size(); i++) {
-            c.addLast(temp->getDigit(i));
+        for(int i = 0; i < t.size(); i++) {
+            c.addLast(t.getDigit(i));
         }
-        delete temp;
     }
 }

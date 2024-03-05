@@ -1,17 +1,29 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "BigInt.h"
+#include "BigInt.cpp"
 #include <iostream>
+#include <cstdlib>
 
-int main() {
-    std::cout << "here" << std::endl;
+using namespace std;
 
-    ds::BigInt a("99923714987642389576897657815432452134123443564352134456657878693");
-    ds::BigInt b("95790763459678971263087");
-    a.output();
-    b.output();
-    ds::BigInt c;
-    c = a - b;
 
-    
-    c.output();
-    return 0;
+int main()
+{
+  ds::BigInt a("1234567890123");
+  ds::BigInt b("1567890123");
+
+  a.output(); //this should display a's value: 1234567890123
+
+  ds::BigInt r;
+  // r = a + b;
+  ds::BigInt::add(a,b,r);
+  r.output();  //This should display 1236135780246
+
+  // ds::BigInt r2;
+  // ds::BigInt::subtract (a,b,r2);
+  
+  // r2.output (); //This should display 123000000000
+
+  
+ 
 }
