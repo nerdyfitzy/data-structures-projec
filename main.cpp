@@ -1,15 +1,16 @@
 #include "BigInt.h"
+#include "BigInt.cpp"
 #include <iostream>
 
 int main() {
     std::cout << "here" << std::endl;
 
-    ds::BigInt a("99923714987642389576897657815432452134123443564352134456657878693");
-    ds::BigInt b("95790763459678971263087");
+    ds::BigInt a("3245345345345903");
+    ds::BigInt b("2345345");
     a.output();
     b.output();
     ds::BigInt c;
-    c = a - b;
+    ds::BigInt::subtract(a, b, c);
 
     
     c.output();

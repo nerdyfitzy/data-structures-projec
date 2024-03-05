@@ -13,8 +13,11 @@ namespace ds {
             int length;
         public:
             BigInt(const std::string &val = "") {
+                bool garbage = true;
                 for (int j = 0; j < val.length(); j++) {
-                digits.addLast(val[j] - '0');
+                    //both conditionals meant for garbage cleaning any 
+                    if(val[j] != '0') garbage = false;
+                    if(!garbage || val.length() == 1 || j == val.length() - 1) digits.addLast(val[j] - '0');
                 }
 
                 length = digits.size();

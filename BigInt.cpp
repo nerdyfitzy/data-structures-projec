@@ -23,8 +23,8 @@ namespace ds {
             carry = -1;
         }
         int * r = new int[2];
-        std::cout << "from " << a << b << c << "ones " << diff << std::endl;
-        std::cout << "carry " << carry << std::endl;
+        // std::cout << "from " << a << b << c << "ones " << diff << std::endl;
+        // std::cout << "carry " << carry << std::endl;
         r[0] = diff;
         r[1] = carry;
 
@@ -145,10 +145,10 @@ namespace ds {
         return false;
     }
 
-    static void add(BigInt &a, BigInt &b, BigInt &c) {
+    void BigInt::add(BigInt &a, BigInt &b, BigInt &c) {
         c = a + b;
     }
-    static void subtract(BigInt &a, BigInt &b, BigInt &c) {
-        c = a + b;
+    void BigInt::subtract(BigInt &a, BigInt &b, BigInt &c) {
+        c = a - b;
     }
 }
