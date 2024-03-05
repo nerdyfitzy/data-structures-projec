@@ -4,12 +4,12 @@
 int main() {
     std::cout << "here" << std::endl;
 
-    ds::BigInt a("2588");
-    ds::BigInt b("1120");
+    ds::BigInt b("1123");
+    ds::BigInt a("4545");
     a.print();
     b.print();
     ds::BigInt c;
-    c = a + b;
+    c = a - b;
 
     
     c.print();
