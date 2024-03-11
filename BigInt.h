@@ -33,7 +33,12 @@ namespace ds {
                 digits.addLast(i);
             }
 
-            void output();
+            void output() {
+                for(int i = 0; i < this->length; i++) {
+                    std::cout << getDigit(i);
+                }
+                std::cout << std::endl;
+            }
             static void add(BigInt &a, BigInt &b, BigInt &c);
             static void subtract(BigInt &a, BigInt &b, BigInt &c);
             friend BigInt operator+(BigInt  &a, BigInt  &b);

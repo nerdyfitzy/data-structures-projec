@@ -24,18 +24,12 @@ namespace ds {
             carry = -1;
         }
         int * r = new int[2];
-        std::cout << "from " << a << b << c << "ones " << diff << std::endl;
-        std::cout << "carry " << carry << std::endl;
+        // std::cout << "from " << a << b << c << "ones " << diff << std::endl;
+        // std::cout << "carry " << carry << std::endl;
         r[0] = diff;
         r[1] = carry;
 
         return r;
-    }
-    void BigInt::output() {
-        for(int i = 0; i < this->length; i++) {
-            std::cout << getDigit(i);
-        }
-        std::cout << std::endl;
     }
 
     BigInt operator+(BigInt  &a, BigInt  &b) {
@@ -71,9 +65,9 @@ namespace ds {
 
         //finalization
         delete [] r;
-        std::cout << "fsum: ";
+        // std::cout << "fsum: ";
         BigInt fsum(fullSum);
-        fsum.output();
+        // fsum.output();
         return fsum;
     }
 
@@ -138,7 +132,10 @@ namespace ds {
         // }
 
         delete [] r;
-        return BigInt(fullDiff);
+        // std::cout << "fulldiff " << fullDiff << std::endl;
+        BigInt fdiff(fullDiff);
+        // fdiff.output();
+        return fdiff;
     }
 
     bool operator>(BigInt &a, BigInt &b) {
@@ -157,16 +154,12 @@ namespace ds {
         BigInt t;
         t = a + b;
         
-        for(int i = 0; i < t.size(); i++) {
-            c.addLast(t.getDigit(i));
-        }
+        c = t;
     }
     void BigInt::subtract(BigInt &a, BigInt &b, BigInt &c) {
         BigInt t;
-        t = a + b;
+        t = a - b;
         
-        for(int i = 0; i < t.size(); i++) {
-            c.addLast(t.getDigit(i));
-        }
+        c = t;
     }
 }

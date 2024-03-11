@@ -9,14 +9,15 @@ using namespace std;
 
 int main()
 {
-  ds::BigInt a("1234567890123");
-  ds::BigInt b("1567890123");
+  ds::BigInt a("43253265987902374");
+  ds::BigInt b("43253265987902374");
 
-  a.output(); //this should display a's value: 1234567890123
+  // a.output(); //this should display a's value: 1234567890123
 
   ds::BigInt r;
   // r = a + b;
-  ds::BigInt::add(a,b,r);
+  ds::BigInt::subtract(a,b,r);
+  std::cout << "outputting ";
   r.output();  //This should display 1236135780246
 
   // ds::BigInt r2;
